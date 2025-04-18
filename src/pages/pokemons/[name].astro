@@ -83,6 +83,15 @@ const handlePageLoad = () => {
   const heartOutline = btnFavorite.querySelector('[data-outline]') as HTMLElement;
   const heartFull = btnFavorite.querySelector('[data-full]') as HTMLElement;
 
+  const startFavorite = () => {
+    const isFavorite = favoritePokemons.some(fav => fav.name === name);
+    
+    if( !isFavorite ) return;
+
+    heartFull.classList.toggle('hidden');
+    heartOutline.classList.toggle('hidden');
+  }
+
   const toggleFavorite = () => {
     const isFavorite = favoritePokemons.some(fav => fav.name === name);
 
@@ -99,6 +108,8 @@ const handlePageLoad = () => {
 
     localStorage.setItem('favorites', JSON.stringify(favoritePokemons));
   }
+
+  startFavorite(); 
 
   btnFavorite.addEventListener('click', () =>{
     heartOutline.classList.toggle('hidden');
