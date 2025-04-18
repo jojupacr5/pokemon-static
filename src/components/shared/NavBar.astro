@@ -3,7 +3,9 @@ const links = [
   { href: "/", text: "Listado" },
   { href: "/pokemons/1", text: "Paginado" },
   { href: "/favorites", text: "Favoritos" }
-]
+];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!-- component -->
@@ -12,10 +14,20 @@ const links = [
     
     {
       links.map(({href, text}) => (
-        <a 
-          href={href} 
-          class="text-gray-800 dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6"
-        >{text}</a> 
+        <div>
+          <a 
+            href={href} 
+            class="text-gray-800 dark:text-gray-200  mx-1.5 sm:mx-6"
+          >{text}</a>
+          {
+            currentPath === href && (
+              <div 
+                transition:name="menu-line"
+                class="border-b-2 border-orange-500 mx-4"
+              ></div>
+            )
+          } 
+        </div>
       ))
     }
     
