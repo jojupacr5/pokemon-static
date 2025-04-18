@@ -5,6 +5,7 @@ import type { PokemonListResponseTs, Result } from "../../interfaces/pokemon-lis
 import Layout from "@layouts/Layout.astro";
 import PokemonCard from "@components/pokemons/PokemonCard.astro";
 import Title from "@components/shared/Title.astro";
+import { Icon } from 'astro-icon/components'
 
 export const getStaticPaths = (async () => {
   
@@ -31,14 +32,21 @@ const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites
   image={imgSrc}
 >
   <section class="mt-10 mx-10 flex flex-col justify-center items-center">
-    <div>
-      <button 
-        onclick="history.back()"
-        class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer mb-2"
-      >
-        Regresar
+    <div class="flex flex-row">
+      <div>
+        <button 
+          onclick="history.back()"
+          class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer mb-2"
+        >
+          Regresar
+        </button>
+        <Title>{ name }</Title>
+      </div>
+  
+      <button class="ml-4 hover:animate-pulse hover:cursor-pointer text-red-500">
+        <Icon name="heart-outline" size={50} />
+        <Icon class="hidden" name="heart-full" size={50} />
       </button>
-      <Title>{ name }</Title>
     </div>
 
     <PokemonCard name={name} url={url} isBig />
